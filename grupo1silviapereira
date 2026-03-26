@@ -1,0 +1,59 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// 2. Criação da classe Reserva
+class Reserva {
+public:
+    int id;
+    string nif;
+    int idQuarto;
+    double preco;
+    int numNoites;
+
+    // 4. Função para calcular o valor total
+    double calculaValor() {
+        return preco * numNoites;
+    }
+
+    // 5. Função para imprimir o talão
+    void imprimeTalao() {
+        cout << "###############################" << endl;
+        cout << "          HOTEL XPTO" << endl;
+        cout << "NIF CLIENTE: " << nif << endl;
+        cout << "Valor a pagar: " << calculaValor() << " EUR" << endl;
+        cout << "geral@hotelxpto.pt | www.hotelxpto.pt" << endl;
+        cout << "###############################" << endl << endl;
+    }
+};
+
+// 3. Função que recebe os elementos e cria o objeto Reserva
+Reserva criarReserva(int id, string nif, int idQuarto, double preco, int noites) {
+    Reserva nova;
+    nova.id = id;
+    nova.nif = nif;
+    nova.idQuarto = idQuarto;
+    nova.preco = preco;
+    nova.numNoites = noites;
+    return nova;
+}
+
+// 1. Projeto com Main
+int main() {
+    // Criando um array (neste caso, usamos vector para ser dinâmico)
+    vector<Reserva> listaReservas;
+
+    // Exemplo de preenchimento manual usando a função de criação
+    listaReservas.push_back(criarReserva(1, "256123456", 101, 75.0, 3));
+    listaReservas.push_back(criarReserva(2, "198765432", 204, 120.5, 2));
+
+    // Listar talões das reservas registadas
+    cout << "--- PROCESSANDO CHECK-OUTS ---" << endl << endl;
+    for (int i = 0; i < listaReservas.size(); i++) {
+        listaReservas[i].imprimeTalao();
+    }
+
+    return 0;
+}
