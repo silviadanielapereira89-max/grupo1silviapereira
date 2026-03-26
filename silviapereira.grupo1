@@ -1,59 +1,29 @@
-#include <iostream>
-#include <string>
-#include <vector>
+class Reserva:
+    def __init__(self, id_reserva, nif, id_quarto, preco, noites):
+        """
+        Ponto 3: Função/Construtor que recebe todos os elementos 
+        para caracterizar a Reserva.
+        """
+        self.id = id_reserva
+        self.nif = nif
+        self.id_quarto = id_quarto
+        self.preco = preco
+        self.noites = noites
 
-using namespace std;
+    def calculaValor(self):
+        """
+        Ponto 4: Calcula o valor total (Preço * Noites).
+        """
+        return self.preco * self.noites
 
-// 2. Criação da classe Reserva
-class Reserva {
-public:
-    int id;
-    string nif;
-    int idQuarto;
-    double preco;
-    int numNoites;
-
-    // 4. Função para calcular o valor total
-    double calculaValor() {
-        return preco * numNoites;
-    }
-
-    // 5. Função para imprimir o talão
-    void imprimeTalao() {
-        cout << "###############################" << endl;
-        cout << "          HOTEL XPTO" << endl;
-        cout << "NIF CLIENTE: " << nif << endl;
-        cout << "Valor a pagar: " << calculaValor() << " EUR" << endl;
-        cout << "geral@hotelxpto.pt | www.hotelxpto.pt" << endl;
-        cout << "###############################" << endl << endl;
-    }
-};
-
-// 3. Função que recebe os elementos e cria o objeto Reserva
-Reserva criarReserva(int id, string nif, int idQuarto, double preco, int noites) {
-    Reserva nova;
-    nova.id = id;
-    nova.nif = nif;
-    nova.idQuarto = idQuarto;
-    nova.preco = preco;
-    nova.numNoites = noites;
-    return nova;
-}
-
-// 1. Projeto com Main
-int main() {
-    // Criando um array (neste caso, usamos vector para ser dinâmico)
-    vector<Reserva> listaReservas;
-
-    // Exemplo de preenchimento manual usando a função de criação
-    listaReservas.push_back(criarReserva(1, "256123456", 101, 75.0, 3));
-    listaReservas.push_back(criarReserva(2, "198765432", 204, 120.5, 2));
-
-    // Listar talões das reservas registadas
-    cout << "--- PROCESSANDO CHECK-OUTS ---" << endl << endl;
-    for (int i = 0; i < listaReservas.size(); i++) {
-        listaReservas[i].imprimeTalao();
-    }
-
-    return 0;
-}
+    def imprimeTalao(self):
+        """
+        Ponto 5: Gera o layout do talão de check-out.
+        """
+        valor_total = self.calculaValor()
+        print("###############################")
+        print("HOTEL XPTO")
+        print(f"NIF CLIENTE: {self.nif}")
+        print(f"Valor a pagar: {valor_total:.2f} EUR")
+        print("geral@hotelxpto.pt | www.hotelxpto.pt")
+        print("###############################")
